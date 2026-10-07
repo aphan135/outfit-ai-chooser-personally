@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Outfit Roulette</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="wardrobe.css">
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <div>
+        <h1>OUTFIT ROULETTE</h1>
+        <p class="sub">Lock what you love. Reroll the rest.</p>
+      </div>
+      <div class="actions">
+        <button class="btn save" id="save">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Save
+        </button>
+        <button class="btn reroll" id="rerollAll">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>Reroll all
+        </button>
+      </div>
+    </header>
+
+    <div class="prompt">
+      <svg class="spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v5M12 17v5M2 12h5M17 12h5M5 5l3.5 3.5M15.5 15.5 19 19M5 19l3.5-3.5M15.5 8.5 19 5"/></svg>
+      <input id="vibe" placeholder="Try gym, rainy, casual, winter..." aria-label="Describe a vibe">
+      <button class="gen" id="gen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 2v5M12 17v5M2 12h5M17 12h5M5 5l3.5 3.5M15.5 15.5 19 19M5 19l3.5-3.5M15.5 8.5 19 5"/></svg>Generate
+      </button>
+    </div>
+
+    <p class="vibe-hint" id="vibeHint"></p>
+    <div class="chips" id="chips"></div>
+
+    <div class="grid">
+      <div class="slots" id="slots"></div>
+
+      <aside class="receipt">
+        <div class="title">YOUR FIT — RECEIPT</div>
+        <div id="items"></div>
+        <div class="total"><span>TOTAL</span><span id="total">$0.00</span></div>
+        <p class="note">Concept outfit builder — garment art is illustrated, not photographed.</p>
+      </aside>
+    </div>
+
+  </div>
+
+  <!-- Floating buttons -->
+  <div class="fab">
+    <button class="a" id="openWardrobe" aria-label="Open saved outfits">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7a2 2 0 1 0-2-2M12 7v3l9 6a1 1 0 0 1-.6 1.8H3.6A1 1 0 0 1 3 16l9-6"/></svg>
+      <span class="badge" id="savedCount" hidden>0</span>
+    </button>
+    <button class="b" aria-label="Add item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    </button>
+  </div>
+
+  <!-- Saved outfits panel -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="Saved outfits">
+    <div class="drawer-head">
+      <h2>Saved outfits</h2>
+      <button class="close" id="closeWardrobe" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-list" id="savedList"></div>
+  </aside>
+
+  <!-- Details Modal -->
+  <div class="modal-overlay" id="detailsModal" hidden>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="modalTitle">Outfit Details</h2>
+        <button class="close" id="closeDetailsModal" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modalContent"></div>
+      <div class="modal-foot">
+        <button class="wear" id="modalWearBtn">Wear this outfit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order matters: data, wardrobe, vibes, then main script. -->
+  <script src="data.js?v=5"></script>
+  <script src="wardrobe.js?v=6"></script>
+  <script src="vibes.js?v=5"></script>
+  <script src="script.js?v=5"></script>
+</body>
+</html>
